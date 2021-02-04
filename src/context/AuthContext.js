@@ -31,17 +31,17 @@ export function AuthProvider({ children }) {
     return auth.currentUser.updateEmail(email);
   }
 
-  function UpdatePassword(email) {
-    return auth.currentUser.UpdatePassword(email);
+  function updatePassword(password) {
+    return auth.currentUser.updatePassword(password);
   }
 
   useEffect(() => {
-    const subscribe = auth.onAuthStateChanged((user) => {
+    let unSubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
 
-    return subscribe;
+    return unSubscribe;
   }, []);
 
   const value = {
@@ -51,7 +51,7 @@ export function AuthProvider({ children }) {
     logout,
     resetPassword,
     updateEmail,
-    UpdatePassword,
+    updatePassword,
   };
 
   return (

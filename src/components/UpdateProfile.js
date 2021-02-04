@@ -7,7 +7,7 @@ export default function UpdatePassword() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { currentUser, UpdatePassword, updateEmail } = useAuth();
+  const { currentUser, updatePassword, updateEmail } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -24,12 +24,12 @@ export default function UpdatePassword() {
     }
 
     if (passwordRef.current.value) {
-      promises.push(UpdatePassword(passwordRef.current.value));
+      promises.push(updatePassword(passwordRef.current.value));
     }
 
     Promise.all(promises)
       .then(() => {
-        history.push("/");
+        history.push("/updatemessage");
       })
       .catch(() => {
         setError("Failed to Update");
@@ -53,6 +53,7 @@ export default function UpdatePassword() {
                 ref={emailRef}
                 required
                 defaultValue={currentUser.email}
+                autoComplete="on"
               />
             </Form.Group>
             <Form.Group id="password">
@@ -61,6 +62,7 @@ export default function UpdatePassword() {
                 type="password"
                 ref={passwordRef}
                 placeholder="Leave blank to keep the same"
+                autoComplete="off"
               />
             </Form.Group>
             <Form.Group id="password">
@@ -69,6 +71,7 @@ export default function UpdatePassword() {
                 type="password"
                 ref={passwordConfirmRef}
                 placeholder="Leave blank to keep the same"
+                autoComplete="off"
               />
             </Form.Group>
             <Button disabled={loading} type="submit" className="w-100">
@@ -78,7 +81,9 @@ export default function UpdatePassword() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        If you don't want to update click <Link to="/">Cancel</Link>
+        <p>
+          If you don't want to update click <Link to="/">Cancel</Link>
+        </p>
       </div>
     </>
   );

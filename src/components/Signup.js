@@ -23,7 +23,7 @@ export default function Signup() {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      history.push("/login");
+      history.push("/go-login");
     } catch {
       setError("Failed to create an account");
     }
@@ -40,15 +40,30 @@ export default function Signup() {
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Control
+                type="email"
+                ref={emailRef}
+                required
+                autoComplete="on"
+              />
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
+              <Form.Control
+                type="password"
+                ref={passwordRef}
+                required
+                autoComplete="off"
+              />
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="password" ref={passwordConfirmRef} required />
+              <Form.Control
+                type="password"
+                ref={passwordConfirmRef}
+                required
+                autoComplete="off"
+              />
             </Form.Group>
             <Button disabled={loading} type="submit" className="w-100">
               Sign Up

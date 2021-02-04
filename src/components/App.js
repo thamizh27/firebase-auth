@@ -7,6 +7,8 @@ import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
+import GoLogIn from "./GoLogIn";
+import UpdateMessage from "./UpdateMessage";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Switch>
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute path="/updateprofile" component={UpdateProfile} />
+              <Route path="/go-login" component={GoLogIn} />
+              <Route path="/updatemessage" component={UpdateMessage} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgotpassword" component={ForgotPassword} />

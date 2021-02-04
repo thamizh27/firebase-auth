@@ -29,10 +29,10 @@ export default function UpdatePassword() {
 
     Promise.all(promises)
       .then(() => {
-        history.push("/updatemessage");
+        history.push("/login");
       })
-      .catch(() => {
-        setError("Failed to Update");
+      .catch((error) => {
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
